@@ -1,0 +1,285 @@
+@using Microsoft.AspNetCore.Http;
+@using Message = SameApp.Models.Message
+@model dynamic
+
+@{
+    ViewData["Title"] = "App Page";
+}
+
+<script src="~/js/chat.js" asp-append-version="true"></script>
+@section Scripts{
+        <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/sig.js"></script>
+    }
+
+
+
+<link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
+@* <script src="~/js/site.js" asp-append-version="true"></script> *@
+
+<div class="modal fade" tabindex="-1" id="loginModal"  
+                         data-keyboard="false" data-backdrop="static">  
+                        <div class="modal-dialog modal-lg">  
+                            <div class="modal-content">  
+                                
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add a New Contact</h3> 
+                                    
+                                    <button type="button" id="btnHideModal" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                </div>  
+                                
+                                <div class="modal-body" id="add_contact_div">
+                                    <!-- new contact form -->
+                                    <div>
+                                        <label for="Username">User Name</label>
+                                        <input required="required" name="Id" id="Username" class="form-control" onfocus="this.placeholder=''" placeholder="Type a user name" />
+                                    
+                                        <label for="Display-name">Display Name</label>
+                                        <input required="required" name="Name" id="Display-name" class="form-control" onfocus="this.placeholder=''" placeholder="Type a display name"/>
+                                                                                
+                                        <label for="Server">Server</label>
+                                        <input required="required" name="Server" id="Server" class="form-control" onfocus="this.placeholder=''" placeholder="Type a Server Address"/>
+                                                                                
+                                        <input value="Add Contact" class="btn btn-primary" id="input-addContact"/>
+                                    </div>
+                                    
+                                </div>
+                            </div>  
+                        </div>  
+                    </div>  
+
+
+<div class="container front-container">
+<div class="row chat-top">
+        
+    <div class="col-sm-4 border-right border-secondary">
+            
+        <!-- need to add the name of user name.-->
+        <span class="userName" id="userNameShow">
+            @Context.Session.GetString("username")
+        </span>
+            
+
+        <button class="logoutButton" onclick="location.href='@Url.Action("Logout", "Home")'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+            </svg>
+        </button>
+            
+        <button id="btnShowModal" type="button">  
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white"
+                 class="bi bi-person-plus-fill" viewbox="0 0 16 16">
+                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                <path fill-rule="evenodd"
+                      d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+            </svg>
+                
+        </button>
+            
+            
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">  </script>  
+            
+        @* <script src="bootstrap/js/bootstrap.min.js"></script>   *@
+            
+              
+        <script type="text/javascript">  
+                    $(document).ready(function () {  
+                        $("#btnShowModal").click(function () {  
+                            $("#loginModal").modal('show');  
+                        });  
+              
+                        $("#btnHideModal").click(function () {  
+                            $("#loginModal").modal('hide');  
+                        });  
+                    });  
+            </script> 
+            
+            
+            
+    </div>
+
+    <div id="contactProfile" class="col-sm-8">
+        
+        <span class="ml-2" id="chat_name">@Context.Session.GetString("currentContactDisplay")</span>
+            
+
+    </div>
+        
+    <div id="contactNameForm" hidden="hidden">
+        
+        @using (Html.BeginForm("Chat", "Home"))
+        {
+            <input name="contactName" id="contactName" type="text"/>
+        
+            <input type="submit" id="send_contactName" value="Send" disabled="disabled"/>
+        }
+    </div>
+    
+    <span hidden="hidden" id="combina">@Context.Session.GetString("currentContactId")</span>
+    
+    
+</div>
+
+<div class="row">
+
+    <div class="col-sm-4 contacts">
+
+        <div class="contact-table-scroll">
+            <table class="table table-hover" id="contactTable">
+                <tbody id="contact_tbody">
+                    
+                @foreach (var contact in Model.Contacts)
+                {
+                    <tr onclick="contactClick('@contact.Id')">
+                        <td>
+                            @contact.Name
+                        </td>
+                        <div id="@contact.Id"></div>
+                        <td>
+                            <small id="@contact.Name+message">
+                                
+                                @* @{ *@
+                                @*     string str = @contact.Last; *@
+                                @*     if (str.Length > 10) *@
+                                @*     { *@
+                                @*         str = @contact.Last.ToString().Substring(0, 9); *@
+                                @*         str = str + "..."; *@
+                                @*     } *@
+                                @* } *@
+                                @* @str *@
+
+                                @contact.Last
+
+                            </small>
+                        </td>
+                        
+                        <td>
+                            <small style='color:grey; text-align: right' id="@contact.Name+time">
+                                @contact.LastDate
+                            </small>
+                        </td>
+                    </tr>
+                }
+
+                </tbody>
+                    
+            </table>
+        </div>
+    </div>
+
+    <div class="col-sm-8 message-area" id="message-area">
+        <div class="message-table-scroll">
+
+            <div id="opening">
+
+                <div class="openScreen" hidden="hidden">
+
+                    @using (Html.BeginForm("Create", "Contact"))
+                    {
+                        <div class="form-group">
+                            <input name="Name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Add Contact" class="btn btn-primary" />
+                        </div>
+
+                        <div>
+                            <a asp-controller="Contact" asp-action="Index">Show contact List</a>
+                        </div>
+
+                        <div>
+                            <a asp-controller="Message" asp-action="Index">Show message List</a>
+                        </div>
+                    }
+
+                        
+
+                    <!-- <img src="newLogo.jpg" alt="" class="openScreen"> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor"
+                         class="bi bi-chat" viewbox="0 0 16 16">
+                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
+                    </svg>
+
+
+                    <p>
+                        <h2 class="openText">Start a New Conversation</h2>
+                    </p>
+                        
+
+                </div>
+            </div>
+
+
+            <table class="table" id="myTableData">
+                <tbody id="message_tbody">
+                @foreach (Message message in Model.Messages)
+                {
+                    @if (message.Sent == false)
+                    {
+                        <tr>
+                            <td id="timeSender">
+                                <small style='color: grey;'>@message.Created</small>
+                            </td>
+                                
+                                
+                            <td id="container">
+                                @message.Content
+
+                            </td>
+                        </tr>
+                    }
+
+                    @if (message.Sent == true)
+                    {
+                        <tr>
+                            <td id="timeReceiver">
+                                <small style='color: grey;'>@message.Created</small>
+                            </td>
+                                
+                            <td id="receive_container">
+                                @message.Content
+                            </td>
+                        </tr>
+                    }
+
+                }
+                    
+                </tbody>
+                    
+            </table>
+
+        </div>
+
+
+        <div class="row message-box" id="message-box">
+                
+                
+            <div class="chat-footer" id="send-footer">
+
+                <div id="text-box">
+                    
+                    <input name="Content" id="message" type="text" class="form-control" autofocus
+                           onfocus="this.placeholder=''" placeholder="Type a message"/>
+                </div>
+                                    
+                <div id="send-box">
+                    <input type="submit" id="send_button" class="send__button" value="Send"/>
+                    
+                    <script>
+                    let input = document.getElementById("message");
+                    input.addEventListener("keypress", function(event) {
+                      if (event.key === "Enter") {
+                        event.preventDefault();
+                        document.getElementById("send_button").click();
+                      }
+                    });
+                    </script>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

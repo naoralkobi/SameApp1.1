@@ -1,0 +1,62 @@
+using Microsoft.EntityFrameworkCore;
+using SameApp.Data;
+using SameApp.Models;
+
+namespace SameApp.Services;
+
+public class ContactService
+{
+    private readonly SameAppContext _context;
+    
+    public ContactService(SameAppContext context)
+    {
+        _context = context;
+    }
+    
+    public void AddContact(Contact item)
+    {
+        _context.Add(item);
+        _context.SaveChanges();
+    }
+    
+    public async Task<Contact> GetContact(string id)
+    {
+        var contact = await _context.Contact.FirstOrDefaultAsync(m => m.Id == id);
+        return contact;
+    }
+
+    // Get all Items
+    public async Task<List<Contact>> GetAllContacts()
+    {
+        return await _context.Contact.ToListAsync();
+    }
+    
+    public List<Contact> GetAllContacts(User user)
+    {
+        var contacts = _context.Contact.Include(m => m.Messages).Where(i => i.User.UserName == user.UserName).ToList();
+        return contacts;
+
+    }
+    
+    public async Task EditContact(Contact contact)
+    {
+        _context.Update(contact);
+        await _context.SaveChangesAsync();
+        
+    }
+    
+    public async Task DeleteContact(string id)
+    {
+        var contact = await _context.Contact.FindAsync(id);
+        if (contact != null)
+        {
+            _context.Contact.Remove(contact);
+        }
+        await _context.SaveChangesAsync();
+    }
+
+    public bool IsExist(string id)
+    {
+        return _context.Contact.Any(e => e.Id == id);
+    }
+}

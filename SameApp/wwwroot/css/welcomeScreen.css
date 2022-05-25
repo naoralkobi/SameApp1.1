@@ -1,0 +1,52 @@
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #919F89;
+}
+
+
+.form {
+    font: 500 1rem 'Quicksand', sans-serif;
+}
+
+form#Wellcome {
+    padding: 150px 0;
+    text-align: center;
+}
+
+i {
+    font-size: 30px;
+}
+
+#title {
+    margin: 33%;
+    color: #ffcf0d;
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    color: #ffffff;
+}
+
+.btn-outline-success {
+    color: #198754;
+    border-color: black;
+}

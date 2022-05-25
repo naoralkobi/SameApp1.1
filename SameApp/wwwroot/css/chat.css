@@ -1,0 +1,241 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #919F89;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+}
+
+.front-container {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+}
+
+#btnShowModal {
+    border: none;
+    background-color: #517470;
+    top: 6px;
+    position: absolute;
+    right: 70%;
+}
+
+.chat-top {
+    background-color: #517470;
+    min-height: 50px;
+}
+
+.profile-image {
+    margin-top: 7px;
+    height: 40px;
+    width: 40px;
+    color: black;
+}
+
+#userNameShow {
+    font-size: x-large;
+    position: absolute;
+    right: 83%;
+    top: 4px;
+}
+
+.contacts {
+    background-color: #ffffff;
+    min-height: 600px;
+}
+
+.contact-table-scroll {
+    overflow-y: scroll;
+    height: 600px;
+}
+
+.message-area {
+    background-color: #e4e1de;
+    min-height: 600px;
+}
+
+.message-table-scroll {
+    overflow-y: scroll;
+    height: 550px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.message-box {
+    background-color: #517470;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+
+input#send_button {
+    /*background-color: #919F89;*/
+    color: black;
+    padding: 12px;
+    font-size: 18px;
+    /*border-color: #517470;*/
+    width: 120px;
+    border: 2px solid #ccc;
+    background-color: #FFF;
+}
+
+
+.custom-file-upload {
+    cursor: pointer;
+    font-size: inherit;
+    color: #0c090d;
+    padding: 0.75rem;
+}
+
+.custom-file-upload:hover {
+    background-color: #e4e1de;
+}
+
+.add-button {
+    position: absolute;
+    top: 10px;
+    right: 890px;
+;
+    z-index: 1;
+}
+
+.modal-title {
+    color: #0c090d;
+}
+
+.chat-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 60px;
+    position: relative;
+    cursor: pointer;
+}
+
+.chat-footer input {
+    display: block;
+    flex: 1;
+    width: 100%;
+    height: 50px;
+    border-radius: 60px;
+    margin: 5px;
+    outline: none;
+    font-size: 19px;
+    padding: 10px 90px 10px 40px;
+    border: 2px solid #ccc;
+    color: #555;
+    resize: none;
+}
+
+.chat-footer .mic {
+    display: block;
+    width: 55px;
+    height: 55px;
+    margin-right: 20px;
+}
+
+.chat-footer .emo {
+    display: block;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 10px;
+    top: 12px;
+}
+
+.openScreen {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    padding: 10px 10px 10%;
+}
+
+/* Chat containers */
+#container {
+    background-color: #919F89;
+    float: right;
+    height: 60%;
+    border-radius: 40px;
+    border-width: 10px;
+    padding-left: 15px;
+    border-color: #e4e1de;
+    text-align: right;
+    max-width: 50ch;
+    word-break: break-word;
+}
+
+
+
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.logoutButton {
+    position: absolute;
+    top: 9px;
+    right: 5px;
+    background-color: #517470;
+    border: none;
+}
+
+#text-box {display:inline-block;margin-right:10px;}
+#send-box {display:inline-block;}
+
+
+#receive_container {
+    background-color: darkseagreen;
+    float: left;
+    max-width: 50%;
+    height: 60%;
+    border-radius: 40px;
+    border-width: 10px;
+    border-color: #e4e1de;
+    text-align: left;
+}
+
+#timeSender{
+    float: right;
+}
+#timeReceiver{
+    float: left;
+}
+
+#input-addContact, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #517470;
+}
+
+#add_contact_div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    color: black;
+}
+
+#chat_name{
+    font-size: x-large;
+    position: absolute;
+    top: 4px;
+    right: 30%;
+}

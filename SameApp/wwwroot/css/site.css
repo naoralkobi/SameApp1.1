@@ -1,0 +1,122 @@
+html {
+  font: 500 1rem 'Quicksand', sans-serif;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: #919F89;
+}
+
+form#login {
+  padding: 150px 0;
+  text-align: center;
+}
+
+form#createAccount {
+  padding: 150px 0;
+  text-align: center;
+}
+
+i {
+  font-size: 30px;
+}
+
+#title {
+  margin: 33%;
+  color: #ffcf0d;
+}
+
+h3 {
+  text-align: center;
+}
+
+a {
+  color: #ffffff;
+}
+
+.form--hidden {
+  display: none;
+}
+
+.form > *:first-child {
+  margin-top: 0;
+}
+
+.form > *:last-child {
+  margin-bottom: 0;
+}
+
+.form__title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form__message {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form__message--error {
+  color: red;
+}
+
+.form__input-group {
+  margin-bottom: 1rem;
+}
+
+.form__input {
+  width: 20%;
+  border: 1px solid #dddddd;
+  outline: none;
+  background: #eeeeee;
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
+.form__input:focus {
+  border-color: black;
+  background: #ffffff;
+}
+
+.form__input-error-message {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: red;
+}
+
+.form__button {
+  width: 20%;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #517470;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #ffcf0d;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form__button:active {
+  transform: scale(0.98);
+}
+
+.form__text {
+  text-align: center;
+}
+
+.form__link {
+  text-decoration: none;
+  cursor: pointer;
+}

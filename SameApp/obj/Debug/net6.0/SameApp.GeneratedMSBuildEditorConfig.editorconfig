@@ -1,0 +1,116 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SameApp
+build_property.RootNamespace = SameApp
+build_property.ProjectDir = /Users/naoralkobi/RiderProjects/SameApp/SameApp/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/naoralkobi/RiderProjects/SameApp/SameApp
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Contact/Ajax.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9BamF4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Contact/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Contact/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Contact/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Contact/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Contact/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Home/Chat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9DaGF0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Message/Ajax.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZS9BamF4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Message/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Message/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZS9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Message/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZS9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Message/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Message/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/User/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/User/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/User/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/User/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/naoralkobi/RiderProjects/SameApp/SameApp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-75ag2th9v0
