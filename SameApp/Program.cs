@@ -33,13 +33,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseSession();
+
 app.UseCors("Allow All");
 
 app.UseAuthorization();

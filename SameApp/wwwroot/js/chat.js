@@ -13,7 +13,7 @@ function contactClick(name) {
         document.getElementById("contactName").setAttribute('value', name);
         document.getElementById("send_contactName").removeAttribute('disabled');
 
-        
+
 
         $('#send_contactName').trigger('click');
     }
@@ -82,7 +82,7 @@ async function postTransfer(server, message) {
 
     let fromUser = document.getElementById("userNameShow").textContent;
     fromUser = fromUser.trim();
-    
+
 
     const request = {
         method: 'POST',
@@ -99,17 +99,18 @@ async function postTransfer(server, message) {
 }
 
 async function postTransferToMyServer(server, message) {
-    
+
     let fromUser = document.getElementById("userNameShow").textContent;
     fromUser = fromUser.trim();
     let contactId = document.getElementById("combina").textContent;
-    
+    let time = insertDate() + " " + insertTimeMessage();
+
     const request = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({"id":'20000', "content":message, "created":'24:24', "sent":true, "UserId":fromUser, "ContactId":contactId})
+        body: JSON.stringify({"id":'20000', "content":message, "created":time, "sent":true, "UserId":fromUser, "ContactId":contactId})
     };
     let string = "https://" + server + "/api/Messages";
     const response = await fetch(string, request);
@@ -120,6 +121,9 @@ async function postTransferToMyServer(server, message) {
 
 async function transferManager(server, message) {
     //let message = document.getElementById('message').value;
+
+    alert("in transfer messages");
+
     if (message.length > 0){
         let result = postTransferToMyServer(server, message);
         if (result) {
@@ -147,6 +151,6 @@ function insertTimeMessage(){
     let minutes = today.getMinutes();
 
     minutes = minutes < 10 ? '0'+minutes : minutes;
-    
+
     return hours + ':' + minutes;
 }
