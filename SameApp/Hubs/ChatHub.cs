@@ -16,7 +16,7 @@ public class ChatHub : Hub
 
         await  Clients.Client(receiverConnectionString).SendAsync("ChangeReceived", message, sender, receiver);
         
-        await  Clients.Client(senderConnectionString).SendAsync("Update", message, currentUser);
+        await  Clients.Client(senderConnectionString).SendAsync("Update", message, sender);
         
         //await Clients.All.SendAsync("ChangeReceived", message, currentUser);
     }

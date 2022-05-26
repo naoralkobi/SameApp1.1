@@ -36,7 +36,6 @@ $(function () {
     
     connection.on("Update", function (value, currentUser){
         //alert("update sender data");
-
         if (value.length > 0) {
             let tr = document.createElement("tr");
 
@@ -89,60 +88,64 @@ $(function () {
     
     connection.on("ChangeReceived", function (value, sender, receiver) {
         
+        const $currentChat = $('#chat_name'); 
+        const $currentContact = $('#combina');
         
-        if (value.length > 0) {
-            let tr = document.createElement("tr");
+        if ($currentContact.text() === sender)
+        {
+            if (value.length > 0) {
+                let tr = document.createElement("tr");
 
-            let tdContent = document.createElement("td");
-            let tdTime = document.createElement("td");
-            let timeSmall = document.createElement("small");
+                let tdContent = document.createElement("td");
+                let tdTime = document.createElement("td");
+                let timeSmall = document.createElement("small");
 
-            tdContent.textContent= value;
-            timeSmall.textContent = insertDate() + " " + insertTimeMessage();
+                tdContent.textContent= value;
+                timeSmall.textContent = insertDate() + " " + insertTimeMessage();
+                
+                const $currentContact = $('#userNameShow');
+                if ($currentContact.text() === sender){
+                    tdContent.setAttribute('id', 'container');
+                    tdTime.setAttribute('id', 'timeSender');
+                }
+                else
+                {
+                    tdContent.setAttribute('id', 'receive_container');
+                    tdTime.setAttribute('id', 'timeReceiver');
+                }
+
+
+                tdTime.setAttribute('style', 'color: grey');
+                tdTime.appendChild(timeSmall);
+
+                tr.appendChild(tdTime);
+                tr.appendChild(tdContent);
+
+                document.getElementById("message_tbody").appendChild(tr);
+
+                let CurrentContactName = document.getElementById('chat_name').innerText;
+
+
+                if (value.length > 10)
+                {
+                    document.getElementById(CurrentContactName+"+message").innerText = value.toString().substring(0,9) + "...";
+                }
+                else
+                {
+                    document.getElementById(CurrentContactName+"+message").innerText = value;
+                }
+                document.getElementById(CurrentContactName+"+time").innerText = timeSmall.textContent;
+                document.getElementById('message').value=' ';
+
+                
+            }
             
-
-            const $currentContact = $('#userNameShow');
-            if ($currentContact.text() === sender){
-                tdContent.setAttribute('id', 'container');
-                tdTime.setAttribute('id', 'timeSender');
-            }
-            else
-            {
-                tdContent.setAttribute('id', 'receive_container');
-                tdTime.setAttribute('id', 'timeReceiver');
-            }
-
-
-            tdTime.setAttribute('style', 'color: grey');
-            tdTime.appendChild(timeSmall);
-
-            tr.appendChild(tdTime);
-            tr.appendChild(tdContent);
-
-            document.getElementById("message_tbody").appendChild(tr);
-
-            let CurrentContactName = document.getElementById('chat_name').innerText;
-
-
-            if (value.length > 10)
-            {
-                document.getElementById(CurrentContactName+"+message").innerText = value.toString().substring(0,9) + "...";
-            }
-            else
-            {
-                document.getElementById(CurrentContactName+"+message").innerText = value;
-            }
-            document.getElementById(CurrentContactName+"+time").innerText = timeSmall.textContent;
-            document.getElementById('message').value=' ';
-            
-
-            let result = transferManager('localhost:7001',value,sender, receiver);
-
-            // if ($currentContact.text() === currentUser){
-            //     let result = transferManager('localhost:7001',value);
-            // }
-
         }
+
+        if (value.length > 0) {
+            let result = transferManager('localhost:7001',value,sender, receiver);
+        }
+        
 
     })
 
