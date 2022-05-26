@@ -215,34 +215,42 @@
                 <tbody id="message_tbody">
                 @foreach (Message message in Model.Messages)
                 {
-                    @if (message.Sent == false)
+                    //@Context.Session.GetString("currentContactId")
+                    //@Context.Session.GetString("username")
+
+                    if (
+                        (message.ContactId == @Context.Session.GetString("currentContactId") && message.UserId == @Context.Session.GetString("username")) ||
+                        (message.ContactId == @Context.Session.GetString("username") && message.UserId == @Context.Session.GetString("currentContactId"))
+                        )
                     {
-                        <tr>
-                            <td id="timeSender">
-                                <small style='color: grey;'>@message.Created</small>
-                            </td>
+                        @if (message.Sent == false)
+                        {
+                            <tr>
+                                <td id="timeSender">
+                                    <small style='color: grey;'>@message.Created</small>
+                                </td>
                                 
                                 
-                            <td id="container">
-                                @message.Content
+                                <td id="container">
+                                    @message.Content
 
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        }
+
+                        @if (message.Sent == true)
+                        {
+                            <tr>
+                                <td id="timeReceiver">
+                                    <small style='color: grey;'>@message.Created</small>
+                                </td>
+                                
+                                <td id="receive_container">
+                                    @message.Content
+                                </td>
+                            </tr>
+                        }
                     }
-
-                    @if (message.Sent == true)
-                    {
-                        <tr>
-                            <td id="timeReceiver">
-                                <small style='color: grey;'>@message.Created</small>
-                            </td>
-                                
-                            <td id="receive_container">
-                                @message.Content
-                            </td>
-                        </tr>
-                    }
-
                 }
                     
                 </tbody>

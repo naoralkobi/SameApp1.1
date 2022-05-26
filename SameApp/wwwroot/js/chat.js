@@ -76,7 +76,7 @@ async function InviteManager() {
 }
 
 
-async function postTransfer(server, message) {
+async function postTransfer(server, message, sender, receiver) {
 
     let contactId = document.getElementById("combina").textContent;
 
@@ -89,7 +89,7 @@ async function postTransfer(server, message) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ "from": fromUser, "to": contactId, "content": message })
+        body: JSON.stringify({ "from": sender, "to": receiver, "content": message })
     };
 
 
@@ -98,7 +98,7 @@ async function postTransfer(server, message) {
 
 }
 
-async function postTransferToMyServer(server, message) {
+async function postTransferToMyServer(server, message, sender, receiver) {
 
     let fromUser = document.getElementById("userNameShow").textContent;
     fromUser = fromUser.trim();
@@ -110,7 +110,7 @@ async function postTransferToMyServer(server, message) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({"id":'20000', "content":message, "created":time, "sent":true, "UserId":fromUser, "ContactId":contactId})
+        body: JSON.stringify({"id":'20000', "content":message, "created":time, "sent":true, "UserId":sender, "ContactId":receiver})
     };
     let string = "https://" + server + "/api/Messages";
     const response = await fetch(string, request);
@@ -119,15 +119,15 @@ async function postTransferToMyServer(server, message) {
 }
 
 
-async function transferManager(server, message) {
+async function transferManager(server, message, sender, receiver) {
     //let message = document.getElementById('message').value;
 
     alert("in transfer messages");
 
     if (message.length > 0){
-        let result = postTransferToMyServer(server, message);
+        let result = postTransferToMyServer(server, message, sender, receiver);
         if (result) {
-            await postTransfer(server, message);
+            await postTransfer(server, message, sender, receiver);
         }
     }
 }

@@ -31,7 +31,7 @@ $(function () {
     });
     
     connection.on("Update", function (value, currentUser){
-        alert("update sender data: ");
+        alert("update sender data");
 
         if (value.length > 0) {
             let tr = document.createElement("tr");
@@ -90,9 +90,12 @@ $(function () {
     
 
 
-    connection.on("ChangeReceived", function (value, currentUser) {
+    connection.on("ChangeReceived", function (value, sender, receiver) {
         
         alert("handle with sending message: ");
+        // who send the message.
+        alert(sender);
+        
 
         if (value.length > 0) {
             let tr = document.createElement("tr");
@@ -105,7 +108,7 @@ $(function () {
             timeSmall.textContent = insertDate() + " " + insertTimeMessage();
 
             const $currentContact = $('#userNameShow');
-            if ($currentContact.text() === currentUser){
+            if ($currentContact.text() === sender){
                 tdContent.setAttribute('id', 'container');
                 tdTime.setAttribute('id', 'timeSender');
             }
@@ -140,7 +143,7 @@ $(function () {
 
             document.getElementById('message').value=' ';
 
-            let result = transferManager('localhost:7001',value);
+            let result = transferManager('localhost:7001',value,sender, receiver);
 
             // if ($currentContact.text() === currentUser){
             //     let result = transferManager('localhost:7001',value);
