@@ -19,9 +19,9 @@ public class ContactService
         _context.SaveChanges();
     }
     
-    public async Task<Contact> GetContact(string id)
+    public async Task<Contact> GetContact(string userId, string owner)
     {
-        var contact = await _context.Contact.FirstOrDefaultAsync(m => m.Id == id);
+        var contact = await _context.Contact.FirstOrDefaultAsync(m => m.Id == userId && m.UserNameOwner == owner);
         return contact;
     }
 

@@ -19,15 +19,16 @@ function contactClick(name) {
     }
 }
 
-async function postContactToContactServer() {
+async function postContactToContactServer(displayName, currentUser, newUserName, newServer) {
 
     //var fromUser = document.getElementById("userNameShow").innerHTML;
 
-    let toUser = document.getElementById("Username").value;
-    let server = document.getElementById("Server").value;
-    let fromUser = document.getElementById("userNameShow").textContent;
+    let toUser = newUserName;
+    let server = newServer;
+    let fromUser = currentUser;
     fromUser = fromUser.trim();
-
+    
+    
     const request = {
         method: 'POST',
         headers: {
@@ -43,13 +44,17 @@ async function postContactToContactServer() {
 }
 
 
-async function postContactToMyServer() {
+async function postContactToMyServer(displayName, currentUser, newUserName, newServer) {
 
-    let username = document.getElementById("Username").value;
-    let displayName = document.getElementById("Display-name").value;
-    let server = document.getElementById("Server").value;
-    let fromUser = document.getElementById("userNameShow").textContent;
+    let username = newUserName;
+    let server = newServer;
+    let fromUser = currentUser
     fromUser = fromUser.trim();
+
+    
+    alert("for aviv");
+    
+    
     const request = {
         method: 'POST',
         headers: {
@@ -60,15 +65,19 @@ async function postContactToMyServer() {
 
 
     const response = await fetch("https://" + server + "/api/Contacts", request);
+
+    alert("after fetch");
+
+
     return response.ok;
 
 }
 
 
-async function InviteManager() {
-    let result = postContactToMyServer();
+async function InviteManager(displayName, currentUser, newUserName, newServer) {
+    let result = postContactToMyServer(displayName, currentUser, newUserName, newServer);
     if (result) {
-        await postContactToContactServer();
+        await postContactToContactServer(displayName, currentUser, newUserName, newServer);
     }
     document.getElementById('Username').value = " ";
     document.getElementById('Display-name').value = " ";
@@ -77,13 +86,10 @@ async function InviteManager() {
 
 
 async function postTransfer(server, message, sender, receiver) {
+    
 
-    let contactId = document.getElementById("combina").textContent;
-
-    let fromUser = document.getElementById("userNameShow").textContent;
-    fromUser = fromUser.trim();
-
-
+    
+    
     const request = {
         method: 'POST',
         headers: {
@@ -100,9 +106,8 @@ async function postTransfer(server, message, sender, receiver) {
 
 async function postTransferToMyServer(server, message, sender, receiver) {
 
-    let fromUser = document.getElementById("userNameShow").textContent;
-    fromUser = fromUser.trim();
-    let contactId = document.getElementById("combina").textContent;
+
+    
     let time = insertDate() + " " + insertTimeMessage();
 
     const request = {
@@ -122,7 +127,6 @@ async function postTransferToMyServer(server, message, sender, receiver) {
 async function transferManager(server, message, sender, receiver) {
     //let message = document.getElementById('message').value;
 
-    alert("in transfer messages");
 
     if (message.length > 0){
         let result = postTransferToMyServer(server, message, sender, receiver);
@@ -144,13 +148,10 @@ function insertDate(){
 }
 
 
-
 function insertTimeMessage(){
     let today = new Date();
     let hours = today.getHours();
     let minutes = today.getMinutes();
-
     minutes = minutes < 10 ? '0'+minutes : minutes;
-
     return hours + ':' + minutes;
 }

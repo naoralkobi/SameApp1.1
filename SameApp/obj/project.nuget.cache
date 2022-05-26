@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wncD2JRkcOv+ipPlceFgegrXbZahS3NGCIFGh52HeXDqdPUdGyayWiVHPSDmXLUwOlpfJz1+T55oDdkgJLCYEA==",
+  "dgSpecHash": "NSlNIoF1Tm8rSa3Kl4LKOu3RPoztGcm8NRRykG4GrTFEBK0Hwh3p/Tzhh7BxlNzX5KSXAy9VDe2OP9bLDlZ3qA==",
   "success": true,
-  "projectFilePath": "/Users/naoralkobi/RiderProjects/SameApp/SameApp/SameApp.csproj",
+  "projectFilePath": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/SameApp.csproj",
   "expectedPackageFiles": [
     "/Users/naoralkobi/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/naoralkobi/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",

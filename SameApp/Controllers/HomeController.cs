@@ -70,7 +70,7 @@ namespace SameApp.Controllers
             }
 
 
-            Contact contact = await _serviceContacts.GetContact(contactName);
+            Contact contact = await _serviceContacts.GetContact(contactName, HttpContext.Session.GetString("username"));
             
             HttpContext.Session.SetString("currentContact", contactName);
 

@@ -14,8 +14,10 @@ $(function () {
     })
     
     $('#send_button').click( () => {
+        
+        alert("send message");
+        
         const $message = $('#message');
-
         const $currentContact = $('#userNameShow');
         const $receiverContactId = $('#combina');
 
@@ -23,15 +25,17 @@ $(function () {
     });
 
     $('#input-addContact').click( () => {
-        const $displayName = $('#Display-name');
+        const $newDisplayName = $('#Display-name');
+        const $currentUser = $('#userNameShow');
+        const $newUserName = $('#Username');
+        const $newServer = $('#Server')
+        
 
-        const $currentContact = $('#userNameShow');
-
-        connection.invoke("AddContact", $displayName.val(), $currentContact.text());
+        connection.invoke("AddContact", $newDisplayName.val(), $currentUser.text(), $newUserName.val(), $newServer.val());
     });
     
     connection.on("Update", function (value, currentUser){
-        alert("update sender data");
+        //alert("update sender data");
 
         if (value.length > 0) {
             let tr = document.createElement("tr");
@@ -78,25 +82,14 @@ $(function () {
             document.getElementById(CurrentContactName+"+time").innerText = timeSmall.textContent;
 
             document.getElementById('message').value=' ';
-
-
-
+            
         }
-        
-        
         
     })
     
-    
-
-
     connection.on("ChangeReceived", function (value, sender, receiver) {
         
-        alert("handle with sending message: ");
-        // who send the message.
-        alert(sender);
         
-
         if (value.length > 0) {
             let tr = document.createElement("tr");
 
@@ -106,6 +99,7 @@ $(function () {
 
             tdContent.textContent= value;
             timeSmall.textContent = insertDate() + " " + insertTimeMessage();
+            
 
             const $currentContact = $('#userNameShow');
             if ($currentContact.text() === sender){
@@ -117,7 +111,6 @@ $(function () {
                 tdContent.setAttribute('id', 'receive_container');
                 tdTime.setAttribute('id', 'timeReceiver');
             }
-
 
 
             tdTime.setAttribute('style', 'color: grey');
@@ -140,8 +133,8 @@ $(function () {
                 document.getElementById(CurrentContactName+"+message").innerText = value;
             }
             document.getElementById(CurrentContactName+"+time").innerText = timeSmall.textContent;
-
             document.getElementById('message').value=' ';
+            
 
             let result = transferManager('localhost:7001',value,sender, receiver);
 
@@ -152,25 +145,8 @@ $(function () {
         }
 
     })
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
-
-    connection.on("ChangeContact", function (displayName, currentUser) {
+    connection.on("ChangeContact", function (displayName, currentUser, newUserName, newServer) {
 
         let contactId = document.getElementById('Username').value;
         let server = document.getElementById('Server').value;
@@ -186,19 +162,50 @@ $(function () {
             let tdLastTime = document.createElement("td");
 
 
-            const $currentContact = $('#userNameShow');
-            if ($currentContact.text() === currentUser){
-                tdDisplayName.textContent = displayName;
-                contactId = "'" + contactId + "'";
-                tr.setAttribute("onclick", "contactClick("+contactId+")");
-            }else
-            {
-                tdDisplayName.textContent = currentUser;
-                currentUser = $.trim(currentUser);
-                currentUser = "'" + currentUser + "'";
+            tdDisplayName.textContent = displayName;
+            contactId = "'" + contactId + "'";
+            tr.setAttribute("onclick", "contactClick("+contactId+")");
 
-                tr.setAttribute("onclick", "contactClick("+currentUser+")");
-            }
+            tdLast.textContent= " ";
+            tdLastTime.textContent= " ";
+
+
+
+            tr.appendChild(tdDisplayName);
+            tr.appendChild(tdLast);
+            tr.appendChild(tdLastTime);
+
+            document.getElementById("contact_tbody").appendChild(tr);
+
+            document.getElementById('btnHideModal').click();
+            
+
+            let result = InviteManager(displayName, currentUser, newUserName, newServer);
+        }
+
+    })
+
+    connection.on("UpdateContact", function (displayName, currentUser) {
+
+        let contactId = document.getElementById('Username').value;
+        let server = document.getElementById('Server').value;
+
+        //displayName.length > 0 && contactId.length > 0 && server.length > 0
+        if (displayName.length > 0)
+        {
+
+            let tr = document.createElement("tr");
+
+            let tdDisplayName = document.createElement("td");
+            let tdLast = document.createElement("td");
+            let tdLastTime = document.createElement("td");
+
+
+            tdDisplayName.textContent = currentUser;
+            currentUser = $.trim(currentUser);
+            currentUser = "'" + currentUser + "'";
+
+            tr.setAttribute("onclick", "contactClick("+currentUser+")");
 
             tdLast.textContent= " ";
             tdLastTime.textContent= " ";
@@ -213,7 +220,6 @@ $(function () {
 
             document.getElementById('btnHideModal').click();
 
-            let result = InviteManager();
         }
 
     })

@@ -42,7 +42,7 @@ namespace SameApp.Controllers
                 return NotFound();
             }
         
-            var contact = await _serviceContacts.GetContact(id);
+            var contact = await _serviceContacts.GetContact(id, HttpContext.Session.GetString("username"));
             if (contact == null)
             {
                 return NotFound();
@@ -58,7 +58,7 @@ namespace SameApp.Controllers
             {
                 contact.Messages = new List<Message>();
                 
-                User user = await _serviceUsers.GetUser(HttpContext.Session.GetString("username"));
+                User user = await _serviceUsers.GetUser(contact.UserNameOwner);
                 
                 if (user.Contacts == null)
                 {

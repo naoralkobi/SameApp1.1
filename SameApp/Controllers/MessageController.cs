@@ -208,57 +208,57 @@ namespace SameApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         
-        public async Task<IActionResult> AddNewMessage(string content)
-        {
-            
-
-            if (ModelState.IsValid)
-            {
-                
-                Message message = new Message
-                {
-                    Content = content,
-                    Created = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
-                };
-                
-                //##########
-                string senderName = HttpContext.Session.GetString("username");
-                message.Sent = true;
-                Contact senderContact = await _serviceContacts.GetContact(senderName);
-                if (senderContact == null)
-                {
-                    senderContact = new Contact();
-                }
-                senderContact.Last = content;
-                senderContact.LastDate = message.Created;
-                if (senderContact.Messages == null)
-                {
-                    senderContact.Messages = new List<Message>();
-                }
-                senderContact.Messages.Add(message);
-                await _serviceMessages.AddMessage(message);
-
-                //##########
-                string receiverName = HttpContext.Session.GetString("currentContact");
-                message.Sent = false;
-                message.Id += 1;
-                Contact receiverContact = await _serviceContacts.GetContact(receiverName);
-                if (receiverContact == null)
-                {
-                    receiverContact = new Contact();
-                }
-                receiverContact.Last = content;
-                receiverContact.LastDate = message.Created;
-                if (receiverContact.Messages == null)
-                {
-                    receiverContact.Messages = new List<Message>();
-                }
-                receiverContact.Messages.Add(message);
-                await _serviceMessages.AddMessage(message);
-            }
-            return RedirectToAction("Chat", "Home");
-            
-        }
+        // public async Task<IActionResult> AddNewMessage(string content)
+        // {
+        //     
+        //
+        //     if (ModelState.IsValid)
+        //     {
+        //         
+        //         Message message = new Message
+        //         {
+        //             Content = content,
+        //             Created = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
+        //         };
+        //         
+        //         //##########
+        //         string senderName = HttpContext.Session.GetString("username");
+        //         message.Sent = true;
+        //         Contact senderContact = await _serviceContacts.GetContact(senderName);
+        //         if (senderContact == null)
+        //         {
+        //             senderContact = new Contact();
+        //         }
+        //         senderContact.Last = content;
+        //         senderContact.LastDate = message.Created;
+        //         if (senderContact.Messages == null)
+        //         {
+        //             senderContact.Messages = new List<Message>();
+        //         }
+        //         senderContact.Messages.Add(message);
+        //         await _serviceMessages.AddMessage(message);
+        //
+        //         //##########
+        //         string receiverName = HttpContext.Session.GetString("currentContact");
+        //         message.Sent = false;
+        //         message.Id += 1;
+        //         Contact receiverContact = await _serviceContacts.GetContact(receiverName);
+        //         if (receiverContact == null)
+        //         {
+        //             receiverContact = new Contact();
+        //         }
+        //         receiverContact.Last = content;
+        //         receiverContact.LastDate = message.Created;
+        //         if (receiverContact.Messages == null)
+        //         {
+        //             receiverContact.Messages = new List<Message>();
+        //         }
+        //         receiverContact.Messages.Add(message);
+        //         await _serviceMessages.AddMessage(message);
+        //     }
+        //     return RedirectToAction("Chat", "Home");
+        //     
+        // }
         
         public IActionResult Ajax()
         {

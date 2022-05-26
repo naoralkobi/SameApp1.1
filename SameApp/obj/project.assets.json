@@ -10712,11 +10712,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/naoralkobi/RiderProjects/SameApp/SameApp/SameApp.csproj",
+      "projectUniqueName": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/SameApp.csproj",
       "projectName": "SameApp",
-      "projectPath": "/Users/naoralkobi/RiderProjects/SameApp/SameApp/SameApp.csproj",
+      "projectPath": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/SameApp.csproj",
       "packagesPath": "/Users/naoralkobi/.nuget/packages/",
-      "outputPath": "/Users/naoralkobi/RiderProjects/SameApp/SameApp/obj/",
+      "outputPath": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/naoralkobi/.nuget/NuGet/NuGet.Config"

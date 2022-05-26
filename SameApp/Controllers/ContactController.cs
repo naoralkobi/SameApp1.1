@@ -29,21 +29,21 @@ namespace SameApp.Controllers
         }
 
         // GET: Contact/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null || await _serviceContacts.GetAllContacts() == null)
-            {
-                return NotFound();
-            }
-
-            var contact = await _serviceContacts.GetContact(id);
-            if (contact == null)
-            {
-                return NotFound();
-            }
-
-            return View(contact);
-        }
+        // public async Task<IActionResult> Details(string id)
+        // {
+        //     if (id == null || await _serviceContacts.GetAllContacts() == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     var contact = await _serviceContacts.GetContact(id);
+        //     if (contact == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     return View(contact);
+        // }
 
         // GET: Contact/Create
         public IActionResult Create()
@@ -90,20 +90,20 @@ namespace SameApp.Controllers
         }
 
         // GET: Contact/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null || await _serviceContacts.GetAllContacts() == null)
-            {
-                return NotFound();
-            }
-
-            var contact = await _serviceContacts.GetContact(id);
-            if (contact == null)
-            {
-                return NotFound();
-            }
-            return View(contact);
-        }
+        // public async Task<IActionResult> Edit(string id)
+        // {
+        //     if (id == null || await _serviceContacts.GetAllContacts() == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     var contact = await _serviceContacts.GetContact(id);
+        //     if (contact == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     return View(contact);
+        // }
 
         // POST: Contact/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -140,21 +140,21 @@ namespace SameApp.Controllers
         }
 
         // GET: Contact/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null || await _serviceContacts.GetAllContacts() == null)
-            {
-                return NotFound();
-            }
-
-            var contact = await _serviceContacts.GetContact(id);
-            if (contact == null)
-            {
-                return NotFound();
-            }
-
-            return View(contact);
-        }
+        // public async Task<IActionResult> Delete(string id)
+        // {
+        //     if (id == null || await _serviceContacts.GetAllContacts() == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     var contact = await _serviceContacts.GetContact(id);
+        //     if (contact == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     return View(contact);
+        // }
 
         // POST: Contact/Delete/5
         [HttpPost, ActionName("Delete")]

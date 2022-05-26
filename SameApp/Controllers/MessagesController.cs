@@ -31,7 +31,7 @@ namespace SameApp.Controllers
                 return NotFound();
             }
             // from the current user we create a contact.
-            var contact = await _serviceContacts.GetContact(currentUserName);
+            var contact = await _serviceContacts.GetContact(currentUserName, currentContact);
             var messages =
                 _serviceMessages.GetAllMessages(contact, currentContact);
             return Ok(messages);
@@ -68,11 +68,11 @@ namespace SameApp.Controllers
                     UserId = message1.UserId,
                     ContactId = message1.ContactId,
                 };
+
+
+                string senderName = message.ContactId;
                 
-                
-                string senderName = HttpContext.Session.GetString("username");
-                
-                Contact senderContact = await _serviceContacts.GetContact(senderName);
+                Contact senderContact = await _serviceContacts.GetContact(senderName, message.UserId);
                 
                 if (senderContact == null)
                 {

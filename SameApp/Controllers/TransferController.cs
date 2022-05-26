@@ -41,9 +41,9 @@ namespace SameApp.Controllers
                 };
                 
                 //##########
-                string receiverName = HttpContext.Session.GetString("currentContact");
+                string receiverName = data.From;
                 message.Sent = false;
-                Contact receiverContact = await _serviceContacts.GetContact(receiverName);
+                Contact receiverContact = await _serviceContacts.GetContact(receiverName, data.To);//***
                 if (receiverContact == null)
                 {
                     receiverContact = new Contact();
