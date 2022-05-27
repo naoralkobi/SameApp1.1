@@ -165,7 +165,7 @@ namespace SameApp.Controllers
             {
                 return Problem("Entity set 'SameAppContext.Contact'  is null.");
             }
-            await _serviceContacts.DeleteContact(id);
+            await _serviceContacts.DeleteContact(id, HttpContext.Session.GetString("username"));
             return RedirectToAction(nameof(Index));
         }
 

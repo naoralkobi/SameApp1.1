@@ -223,7 +223,7 @@
                         (message.ContactId == @Context.Session.GetString("username") && message.UserId == @Context.Session.GetString("currentContactId"))
                         )
                     {
-                        @if (message.Sent == false)
+                        @if (message.Sent == true)
                         {
                             <tr>
                                 <td id="timeSender">
@@ -238,7 +238,7 @@
                             </tr>
                         }
 
-                        @if (message.Sent == true)
+                        @if (message.Sent == false)
                         {
                             <tr>
                                 <td id="timeReceiver">

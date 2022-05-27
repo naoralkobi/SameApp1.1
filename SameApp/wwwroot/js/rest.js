@@ -24,22 +24,26 @@ async function post() {
 }
 
 async function put() {
-    alert("in put");
+    
     const request = {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({"Id":'Hana', "Name":'update name', "Server":'localhost:7001', "Last":'n', "LastDate":'n'})
+        body: JSON.stringify({ "Id": "Aviv", "UserNameOwner": "Naor", "Name": "newDisplayName", "Server": "localhost:7001", "Last": '', "LastDate": '' })
     };
-
-    const response = await fetch("https://localhost:7001/api/Contacts/Hana", request);
+    const response = await fetch("https://localhost:7001/api/Contacts/Aviv", request);
     return response.ok;
 }
 
 
+
 async function del() {
+    alert("in del");
+
     const r = await fetch('https://localhost:7001/api/Contacts/Aviv', {
         method: 'DELETE'
     });
+    console.log(r);
 }
+

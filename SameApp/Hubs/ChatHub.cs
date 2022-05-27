@@ -24,15 +24,18 @@ public class ChatHub : Hub
     public async Task AddContact(string displayName, string currentUser, string newUserName, string newServer)
     {
         currentUser = currentUser.Trim();
-        // who send the request for adding the contact.
-        var senderConnectionString = Connections[currentUser];
-        await  Clients.Client(senderConnectionString).SendAsync("ChangeContact", displayName, currentUser, newUserName, newServer);
+
+        if (currentUser != newUserName)
+        {
+            // who send the request for adding the contact.
+            var senderConnectionString = Connections[currentUser];
+            await  Clients.Client(senderConnectionString).SendAsync("ChangeContact", displayName, currentUser, newUserName, newServer);
         
-        // the other user.
-        var receiverConnectionString = Connections[newUserName];
-        await  Clients.Client(receiverConnectionString).SendAsync("UpdateContact", displayName, currentUser);
-        
-        //await Clients.All.SendAsync("ChangeContact", displayName, currentUser);
+            // the other user.
+            var receiverConnectionString = Connections[newUserName];
+            await  Clients.Client(receiverConnectionString).SendAsync("UpdateContact", displayName, currentUser);
+
+        }
     }
     
     public void Connect(string userNameId)

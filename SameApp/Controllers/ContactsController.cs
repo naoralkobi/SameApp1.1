@@ -11,11 +11,13 @@ namespace SameApp.Controllers
     {
         private readonly ContactService _serviceContacts;
         private readonly UserService _serviceUsers;
+        private readonly MessageService _serviceMessages;
 
-        public ContactsController(ContactService service1, UserService service2)
+        public ContactsController(ContactService service1, UserService service2, MessageService service3)
         {
             _serviceContacts = service1;
             _serviceUsers = service2;
+            _serviceMessages = service3;
         }
 
         // GET: Contact
@@ -85,11 +87,21 @@ namespace SameApp.Controllers
             {
                 return Problem("Entity set 'SameAppContext.Contact'  is null.");
             }
-            await _serviceContacts.DeleteContact(id);
+            // get all messages of id.
+            // 1. get contact(id)
+            // 2. get messages(contact)
+            // 3. delete the messages.
+            Contact contact = await _serviceContacts.GetContact(id, HttpContext.Session.GetString("username"));
+            List<Message> messages = _serviceMessages.GetAllMessages(HttpContext.Session.GetString("username"), id);
+            foreach (var message in messages)
+            {
+                await _serviceMessages.DeleteMessage(message.Id);
+            }
+            await _serviceContacts.DeleteContact(id, HttpContext.Session.GetString("username"));
             return NoContent();
         }
         
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Edit([Bind("Id,UserNameOwner,Name,Server,Last,LastDate")] Contact contact)
         {
             if (ModelState.IsValid)

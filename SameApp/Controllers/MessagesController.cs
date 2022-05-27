@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 using SameApp.Models;
 using SameApp.Services;
@@ -6,7 +7,7 @@ using SameApp.Services;
 namespace SameApp.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Contacts/{id1}/[controller]")]
     public class MessagesController : Controller
     {
         private readonly ContactService _serviceContacts;
@@ -19,21 +20,23 @@ namespace SameApp.Controllers
             _serviceUsers = service2;
             _serviceMessages = service3;
         }
-
+        
+        
+        // id1 is the name we get from url.
+        //http://foo.com/api/contacts/:Aviv/messages ===> username = naor.
         // GET: Contact
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id1)
         {
+            // current user name.
             var currentUserName = HttpContext.Session.GetString("username");
-            var currentContact = HttpContext.Session.GetString("currentContact");
             if (currentUserName == null)
             {
                 return NotFound();
             }
             // from the current user we create a contact.
-            var contact = await _serviceContacts.GetContact(currentUserName, currentContact);
             var messages =
-                _serviceMessages.GetAllMessages(contact, currentContact);
+                _serviceMessages.GetAllMessages(currentUserName, id1);
             return Ok(messages);
         }
 
@@ -41,7 +44,7 @@ namespace SameApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Details(int id)
         {
-            if (!_serviceMessages.IsExist(1))
+            if (!_serviceMessages.IsExist(id))
             {
                 return NotFound();
             }
@@ -107,6 +110,44 @@ namespace SameApp.Controllers
             await _serviceMessages.DeleteMessage(id);
             return NoContent();
         }
+        
+        
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Content,Created,Sent,UserId,ContactId")] Message message)
+        {
+            if (id != message.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _serviceMessages.EditMessage(message);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_serviceMessages.IsExist(message.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return NoContent();
+            }
+            return BadRequest();
+        }
+        
+        
+        
+        
+        
     }
 
 }

@@ -39,9 +39,10 @@ public class MessageService
         //return await sameAppContext.ToListAsync();
     }
     
-    public List<Message> GetAllMessages(Contact contact, string condition)
+    public List<Message> GetAllMessages(string currentUserName, string contactId)
     {
-        var messages =  _context.Message.Where(i => i.Contact.Id == condition).ToList();
+        var messages = _context.Message.Where(i =>
+            ((i.UserId == currentUserName && i.ContactId == contactId))).ToList();
         return messages;
     }
     

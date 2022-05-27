@@ -1,3 +1,4 @@
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using SameApp.Data;
 using SameApp.Models;
@@ -33,7 +34,9 @@ public class ContactService
     
     public List<Contact> GetAllContacts(User user)
     {
-        var contacts = _context.Contact.Include(m => m.Messages).Where(i => i.User.UserName == user.UserName).ToList();
+        //var contacts = _context.Contact.Include(m => m.Messages).Where(i => i.User.UserName == user.UserName).ToList();
+        var contacts = _context.Contact.Where(contact => contact.UserNameOwner == user.UserName).ToList();
+        //var contacts = _context.Contact.Where(contact => contact.UserNameOwner == user.UserName).Select()
         return contacts;
 
     }
@@ -45,9 +48,9 @@ public class ContactService
         
     }
     
-    public async Task DeleteContact(string id)
+    public async Task DeleteContact(string id, string owner)
     {
-        var contact = await _context.Contact.FindAsync(id);
+        var contact = await _context.Contact.FirstOrDefaultAsync(m => m.Id == id && m.UserNameOwner == owner);
         if (contact != null)
         {
             _context.Contact.Remove(contact);

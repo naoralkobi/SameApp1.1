@@ -205,8 +205,8 @@ namespace SameApp.Controllers
             return _serviceMessages.IsExist(id);
         }
         
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         
         // public async Task<IActionResult> AddNewMessage(string content)
         // {

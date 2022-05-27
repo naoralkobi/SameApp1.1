@@ -15,8 +15,6 @@ $(function () {
     
     $('#send_button').click( () => {
         
-        alert("send message");
-        
         const $message = $('#message');
         const $currentContact = $('#userNameShow');
         const $receiverContactId = $('#combina');
@@ -29,8 +27,6 @@ $(function () {
         const $currentUser = $('#userNameShow');
         const $newUserName = $('#Username');
         const $newServer = $('#Server')
-        
-
         connection.invoke("AddContact", $newDisplayName.val(), $currentUser.text(), $newUserName.val(), $newServer.val());
     });
     

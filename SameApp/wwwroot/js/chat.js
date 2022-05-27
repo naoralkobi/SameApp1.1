@@ -52,7 +52,6 @@ async function postContactToMyServer(displayName, currentUser, newUserName, newS
     fromUser = fromUser.trim();
 
     
-    alert("for aviv");
     
     
     const request = {
@@ -62,13 +61,7 @@ async function postContactToMyServer(displayName, currentUser, newUserName, newS
         },
         body: JSON.stringify({ "Id": username, "UserNameOwner": fromUser, "Name": displayName, "Server": server, "Last": '', "LastDate": '' })
     };
-
-
     const response = await fetch("https://" + server + "/api/Contacts", request);
-
-    alert("after fetch");
-
-
     return response.ok;
 
 }
@@ -98,16 +91,12 @@ async function postTransfer(server, message, sender, receiver) {
         body: JSON.stringify({ "from": sender, "to": receiver, "content": message })
     };
 
-
     const response = await fetch("https://" + server +"/api/transfer", request);
     return response.ok;
 
 }
 
 async function postTransferToMyServer(server, message, sender, receiver) {
-
-
-    
     let time = insertDate() + " " + insertTimeMessage();
 
     const request = {
@@ -117,7 +106,8 @@ async function postTransferToMyServer(server, message, sender, receiver) {
         },
         body: JSON.stringify({"id":'20000', "content":message, "created":time, "sent":true, "UserId":sender, "ContactId":receiver})
     };
-    let string = "https://" + server + "/api/Messages";
+    //"api/Contacts/{id1}/[controller]"
+    let string = "https://" + server + "/api/Contacts/" + receiver + "/Messages";
     const response = await fetch(string, request);
     console.log(request);
     return response.ok;
