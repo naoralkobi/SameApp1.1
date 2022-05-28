@@ -31,7 +31,10 @@ $(function () {
     });
     
     connection.on("Update", function (value, currentUser){
-        //alert("update sender data");
+        
+        
+        alert("in update");
+        
         if (value.length > 0) {
             let tr = document.createElement("tr");
 
@@ -41,8 +44,10 @@ $(function () {
 
             tdContent.textContent= value;
             timeSmall.textContent = insertDate() + " " + insertTimeMessage();
-
+            
+            
             const $currentContact = $('#userNameShow');
+            
             if ($currentContact.text() === currentUser){
                 tdContent.setAttribute('id', 'container');
                 tdTime.setAttribute('id', 'timeSender');
@@ -53,8 +58,7 @@ $(function () {
                 tdTime.setAttribute('id', 'timeReceiver');
             }
 
-
-
+            
             tdTime.setAttribute('style', 'color: grey');
             tdTime.appendChild(timeSmall);
 
@@ -84,8 +88,14 @@ $(function () {
     
     connection.on("ChangeReceived", function (value, sender, receiver) {
         
+        alert("in send message");
+        
         const $currentChat = $('#chat_name'); 
         const $currentContact = $('#combina');
+
+        alert($currentContact.text());
+        alert(sender);
+        
         
         if ($currentContact.text() === sender)
         {
@@ -98,8 +108,14 @@ $(function () {
 
                 tdContent.textContent= value;
                 timeSmall.textContent = insertDate() + " " + insertTimeMessage();
+
+
                 
                 const $currentContact = $('#userNameShow');
+
+                alert($currentContact.text());
+                alert(sender);
+                
                 if ($currentContact.text() === sender){
                     tdContent.setAttribute('id', 'container');
                     tdTime.setAttribute('id', 'timeSender');
@@ -109,6 +125,8 @@ $(function () {
                     tdContent.setAttribute('id', 'receive_container');
                     tdTime.setAttribute('id', 'timeReceiver');
                 }
+
+
 
 
                 tdTime.setAttribute('style', 'color: grey');
@@ -223,7 +241,6 @@ $(function () {
 
     })
     
-
     
 });
 
