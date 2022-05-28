@@ -1,4 +1,3 @@
-
 $(function () {
     const connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
@@ -7,14 +6,14 @@ $(function () {
 
     connection.start().then(function () {
         const $currentUserId = $('#userNameShow');
-        
+
         // add current User Id to Dict.
         connection.invoke("Connect", $currentUserId.text());
 
     })
-    
+
     $('#send_button').click( () => {
-        
+
         const $message = $('#message');
         const $currentContact = $('#userNameShow');
         const $receiverContactId = $('#combina');
@@ -29,12 +28,11 @@ $(function () {
         const $newServer = $('#Server')
         connection.invoke("AddContact", $newDisplayName.val(), $currentUser.text(), $newUserName.val(), $newServer.val());
     });
-    
+
     connection.on("Update", function (value, currentUser){
-        
-        
-        alert("in update");
-        
+
+
+
         if (value.length > 0) {
             let tr = document.createElement("tr");
 
@@ -44,21 +42,14 @@ $(function () {
 
             tdContent.textContent= value;
             timeSmall.textContent = insertDate() + " " + insertTimeMessage();
-            
-            
-            const $currentContact = $('#userNameShow');
-            
-            if ($currentContact.text() === currentUser){
-                tdContent.setAttribute('id', 'container');
-                tdTime.setAttribute('id', 'timeSender');
-            }
-            else
-            {
-                tdContent.setAttribute('id', 'receive_container');
-                tdTime.setAttribute('id', 'timeReceiver');
-            }
 
-            
+
+            const $currentContact = $('#userNameShow');
+
+            tdContent.setAttribute('id', 'container');
+            tdTime.setAttribute('id', 'timeSender');
+
+
             tdTime.setAttribute('style', 'color: grey');
             tdTime.appendChild(timeSmall);
 
@@ -81,22 +72,19 @@ $(function () {
             document.getElementById(CurrentContactName+"+time").innerText = timeSmall.textContent;
 
             document.getElementById('message').value=' ';
-            
+
         }
-        
+
     })
-    
-    connection.on("ChangeReceived", function (value, sender, receiver) {
-        
-        alert("in send message");
-        
-        const $currentChat = $('#chat_name'); 
+
+    connection.on("ChangeReceived", function (value, sender, receiver, server) {
+
+
+        const $currentChat = $('#chat_name');
         const $currentContact = $('#combina');
 
-        alert($currentContact.text());
-        alert(sender);
-        
-        
+
+
         if ($currentContact.text() === sender)
         {
             if (value.length > 0) {
@@ -110,22 +98,12 @@ $(function () {
                 timeSmall.textContent = insertDate() + " " + insertTimeMessage();
 
 
-                
+
                 const $currentContact = $('#userNameShow');
 
-                alert($currentContact.text());
-                alert(sender);
-                
-                if ($currentContact.text() === sender){
-                    tdContent.setAttribute('id', 'container');
-                    tdTime.setAttribute('id', 'timeSender');
-                }
-                else
-                {
-                    tdContent.setAttribute('id', 'receive_container');
-                    tdTime.setAttribute('id', 'timeReceiver');
-                }
 
+                tdContent.setAttribute('id', 'receive_container');
+                tdTime.setAttribute('id', 'timeReceiver');
 
 
 
@@ -151,15 +129,15 @@ $(function () {
                 document.getElementById(CurrentContactName+"+time").innerText = timeSmall.textContent;
                 document.getElementById('message').value=' ';
 
-                
-            }
-            
-        }
 
-        if (value.length > 0) {
-            let result = transferManager('localhost:7001',value,sender, receiver);
+            }
+
         }
         
+        if (value.length > 0) {
+            let result = transferManager(server,value,sender, receiver);
+        }
+
 
     })
 
@@ -195,7 +173,7 @@ $(function () {
             document.getElementById("contact_tbody").appendChild(tr);
 
             document.getElementById('btnHideModal').click();
-            
+
 
             let result = InviteManager(displayName, currentUser, newUserName, newServer);
         }
@@ -240,7 +218,6 @@ $(function () {
         }
 
     })
-    
-    
-});
 
+
+});

@@ -1,22 +1,24 @@
 function contactClick(name) {
     let contact = document.getElementById("chat_name").innerHTML;
-    if (name !== contact)
-    {
-        document.getElementById('opening').setAttribute('hidden','hidden');
-        document.getElementById('message-box').removeAttribute('hidden');
-        document.getElementById('myTableData').removeAttribute('hidden');
-
-        document.getElementById('contactProfile').removeAttribute('hidden');
-
-        //document.getElementById("chat_name").textContent = displayName;
-
-        document.getElementById("contactName").setAttribute('value', name);
-        document.getElementById("send_contactName").removeAttribute('disabled');
 
 
+    //if (name !== contact)
+    //{
+    document.getElementById('opening').setAttribute('hidden','hidden');
+    document.getElementById('message-box').removeAttribute('hidden');
+    document.getElementById('myTableData').removeAttribute('hidden');
 
-        $('#send_contactName').trigger('click');
-    }
+    document.getElementById('contactProfile').removeAttribute('hidden');
+
+    //document.getElementById("chat_name").textContent = displayName;
+
+    document.getElementById("contactName").setAttribute('value', name);
+    document.getElementById("send_contactName").removeAttribute('disabled');
+
+
+
+    $('#send_contactName').trigger('click');
+    // }
 }
 
 async function postContactToContactServer(displayName, currentUser, newUserName, newServer) {
@@ -27,8 +29,8 @@ async function postContactToContactServer(displayName, currentUser, newUserName,
     let server = newServer;
     let fromUser = currentUser;
     fromUser = fromUser.trim();
-    
-    
+
+
     const request = {
         method: 'POST',
         headers: {
@@ -51,9 +53,9 @@ async function postContactToMyServer(displayName, currentUser, newUserName, newS
     let fromUser = currentUser
     fromUser = fromUser.trim();
 
-    
-    
-    
+
+
+
     const request = {
         method: 'POST',
         headers: {
@@ -79,10 +81,10 @@ async function InviteManager(displayName, currentUser, newUserName, newServer) {
 
 
 async function postTransfer(server, message, sender, receiver) {
-    
 
-    
-    
+
+
+
     const request = {
         method: 'POST',
         headers: {

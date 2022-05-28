@@ -27,33 +27,33 @@ namespace SameApp.Controllers
         
         public async Task<IActionResult> Chat()
         {
-            
-            dynamic myModel = new ExpandoObject();
-            
-            User user = await _serviceUsers.GetUser(HttpContext.Session.GetString("username"));
-            
-            
-            //Contact contact = _serviceUsers.GetUser(HttpContext.Session.GetString("contactname"));
-            
-            if (user.Contacts == null)
-            {
-                user.Contacts = new List<Contact>();
-            }
 
-            //myModel.Contacts = user.Contacts.ToList();
-            myModel.Contacts = _serviceContacts.GetAllContacts(user);
-            myModel.Messages = new List<Message>();
-            myModel.Users = _serviceUsers.GetAllUsers();
-            
-            // if (@HttpContext.Session.GetString("username") == null)
-            // {
-            //     return RedirectToAction("Login", "Users");
-            //     // where to go? 
-            // }
+             if (@HttpContext.Session.GetString("username") == null)
+             {
+                 return RedirectToAction("Login", "User");
+             }
 
+             
+             dynamic myModel = new ExpandoObject();
+
+             User user = await _serviceUsers.GetUser(HttpContext.Session.GetString("username"));
             
             
-            return View("Chat", myModel);
+             //Contact contact = _serviceUsers.GetUser(HttpContext.Session.GetString("contactname"));
+            
+             if (user.Contacts == null)
+             {
+                 user.Contacts = new List<Contact>();
+             }
+
+             //myModel.Contacts = user.Contacts.ToList();
+             myModel.Contacts = _serviceContacts.GetAllContacts(user);
+             myModel.Messages = new List<Message>();
+             myModel.Users = _serviceUsers.GetAllUsers();
+            
+            
+            
+             return View("Chat", myModel);
         }
         
         [HttpPost]
@@ -87,12 +87,6 @@ namespace SameApp.Controllers
             //myModel.Contacts = user.Contacts.ToList();
             myModel.Contacts = _serviceContacts.GetAllContacts(user);
             myModel.Messages = _serviceMessages.GetAllMessages(contact);
-            
-            // if (@HttpContext.Session.GetString("username") == null)
-            // {
-            //     return RedirectToAction("Login", "Users");
-            //     // where to go? 
-            // }
 
             
             return View("Chat", myModel);

@@ -78,7 +78,7 @@ namespace SameApp.Controllers
 
                 contact.User = user;
 
-                contact.Server = "localhost:7001";
+                //contact.Server = "localhost:7001";
                 
                 user.Contacts.Add(contact);
                 

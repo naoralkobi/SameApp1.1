@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using SameApp.Models;
+using SameApp.Services;
 
 namespace SameApp.Hubs;
 
 public class ChatHub : Hub
 {
     private static readonly Dictionary<string, string> Connections = new Dictionary<string, string>();
+    private readonly ContactService _serviceContacts;
+    
+    public ChatHub(ContactService service1)
+    {
+        _serviceContacts = service1;
+    }
+
 
     public async Task Changed(string message, string currentUser, string receiverContactId)
     {
@@ -14,7 +23,9 @@ public class ChatHub : Hub
         var receiverConnectionString = Connections[receiver];
         var senderConnectionString = Connections[sender];
 
-        await  Clients.Client(receiverConnectionString).SendAsync("ChangeReceived", message, sender, receiver);
+        Contact contact = await _serviceContacts.GetContact(receiver, sender);
+
+        await  Clients.Client(receiverConnectionString).SendAsync("ChangeReceived", message, sender, receiver,contact.Server);
         
         await  Clients.Client(senderConnectionString).SendAsync("Update", message, sender);
         
