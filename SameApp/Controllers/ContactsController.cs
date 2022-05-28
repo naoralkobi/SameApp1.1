@@ -24,6 +24,10 @@ namespace SameApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var currentUserName = HttpContext.Session.GetString("username");
             if (currentUserName == null)
             {
@@ -39,6 +43,10 @@ namespace SameApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Details(string id)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -56,6 +64,10 @@ namespace SameApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Id,UserNameOwner,Name,Server,Last,LastDate")] Contact contact)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 contact.Messages = new List<Message>();
@@ -83,6 +95,10 @@ namespace SameApp.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (await _serviceContacts.GetAllContacts() == null)
             {
                 return Problem("Entity set 'SameAppContext.Contact'  is null.");
@@ -104,6 +120,10 @@ namespace SameApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit([Bind("Id,UserNameOwner,Name,Server,Last,LastDate")] Contact contact)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 try

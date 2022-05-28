@@ -25,6 +25,10 @@ namespace SameApp.Controllers
         // GET: Message
         public async Task<IActionResult> Index()
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             //
             // var sameAppContext = _context.Message.Include(m => m.Contact);
             // return View(await sameAppContext.ToListAsync());
@@ -35,6 +39,10 @@ namespace SameApp.Controllers
         // GET: Message/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (id == null || await _serviceMessages.GetAllMessages() == null)
             {
                 return NotFound();
@@ -52,6 +60,10 @@ namespace SameApp.Controllers
         // GET: Message/Create
         public IActionResult Create()
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             //ViewData["ContactId"] = new SelectList(_context.Contact, "Id", "Id");
             return View();
         }
@@ -63,6 +75,10 @@ namespace SameApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Content,Created,Sent,UserId,ContactId")] Message message)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             // if (ModelState.IsValid)
             // {
             //     _context.Add(message);
@@ -82,6 +98,10 @@ namespace SameApp.Controllers
         // GET: Message/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             // if (id == null || _context.Message == null)
             // {
             //     return NotFound();
@@ -114,6 +134,10 @@ namespace SameApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Content,Created,Sent,UserId,ContactId")] Message message)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             //
             // if (id != message.Id)
             // {
@@ -172,6 +196,10 @@ namespace SameApp.Controllers
         // GET: Message/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (id == null || await _serviceMessages.GetAllMessages() == null)
             {
                 return NotFound();
@@ -191,6 +219,10 @@ namespace SameApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (await _serviceMessages.GetAllMessages() == null)
             {
                 return Problem("Entity set 'SameAppContext.Message'  is null.");
