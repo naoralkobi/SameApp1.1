@@ -28,6 +28,10 @@ namespace SameApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string id1)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             // current user name.
             var currentUserName = HttpContext.Session.GetString("username");
             if (currentUserName == null)
@@ -44,6 +48,10 @@ namespace SameApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Details(int id)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (!_serviceMessages.IsExist(id))
             {
                 return NotFound();
@@ -61,6 +69,10 @@ namespace SameApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Id,Content,Created,Sent,UserId,ContactId")] Message message1)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 Message message = new Message
@@ -103,6 +115,10 @@ namespace SameApp.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (await _serviceMessages.GetAllMessages() == null)
             {
                 return Problem("Entity set 'SameAppContext.Contact'  is null.");
@@ -117,6 +133,10 @@ namespace SameApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Content,Created,Sent,UserId,ContactId")] Message message)
         {
+            if (@HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (id != message.Id)
             {
                 return NotFound();
