@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,10 +54,15 @@ namespace SameApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserName,Password")] User user)
+        public async Task<IActionResult> Create([Bind("UserName,Password")] User user, string password_confirm)
         {
             if (ModelState.IsValid)
             {
+
+                if(user.Password != password_confirm)
+                {
+                    return RedirectToAction("Chat", "Home");
+                }
 
                 var q = _serviceUsers.IsExist(user.UserName);
 

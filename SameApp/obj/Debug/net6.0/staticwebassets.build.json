@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tJ954CUdEqJvwNYlZBAFfMsO5aVIJVKExGjJblfiHBI=",
+  "Hash": "ST07BScJHFSbKB4vj54bEjvdoAGYkgjTA3NHJCVHbpo=",
   "Source": "SameApp",
   "BasePath": "_content/SameApp",
   "Mode": "Default",
@@ -168,23 +168,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/restM.js"
-    },
-    {
-      "Identity": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/wwwroot/js/sig.js",
-      "SourceId": "SameApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/wwwroot/",
-      "BasePath": "_content/SameApp",
-      "RelativePath": "js/sig.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/js/sig.js"
     },
     {
       "Identity": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/wwwroot/js/signalR.js",

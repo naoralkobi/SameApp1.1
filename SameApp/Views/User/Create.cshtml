@@ -4,7 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
+
+
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
 
         <form asp-action="Create" class="form register_container" id="createAccount">
              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -23,10 +26,11 @@
                            <div class="form__input-error-message"></div>
                     </div>
 
-                     <div class="form__input-group">
-                         <input type="password" id="password_confirm" class="form__input" autofocus placeholder="Confirm password">
-                         <div class="form__input-error-message"></div>
-                     </div>
+                 <div class="form__input-group">
+                     <input type="password" id="password_confirm" name="password_confirm" class="form__input" autofocus placeholder="Confirm password">
+                     <div class="form__input-error-message"></div>
+                 </div>
+                 
                  
                     <button class="form__button" type="submit">Register</button>
                     </div>
