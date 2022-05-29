@@ -29,8 +29,7 @@ $(function () {
         connection.invoke("AddContact", $newDisplayName.val(), $currentUser.text(), $newUserName.val(), $newServer.val());
     });
 
-    connection.on("Update", function (value, currentUser){
-
+    connection.on("Update", function (value, sender, receiver, server){
 
 
         if (value.length > 0) {
@@ -75,15 +74,20 @@ $(function () {
 
         }
 
+        if (value.length > 0) {
+            let result = transferManager(server,value,sender, receiver);
+        }
+
     })
 
     connection.on("ChangeReceived", function (value, sender, receiver, server) {
 
 
+
         const $currentChat = $('#chat_name');
         const $currentContact = $('#combina');
 
-
+        alert($currentContact.text());
 
         if ($currentContact.text() === sender)
         {
@@ -133,12 +137,6 @@ $(function () {
             }
 
         }
-        
-        if (value.length > 0) {
-            let result = transferManager(server,value,sender, receiver);
-        }
-
-
     })
 
     connection.on("ChangeContact", function (displayName, currentUser, newUserName, newServer) {

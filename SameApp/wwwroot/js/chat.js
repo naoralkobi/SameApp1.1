@@ -117,9 +117,6 @@ async function postTransferToMyServer(server, message, sender, receiver) {
 
 
 async function transferManager(server, message, sender, receiver) {
-    //let message = document.getElementById('message').value;
-
-
     if (message.length > 0){
         let result = postTransferToMyServer(server, message, sender, receiver);
         if (result) {

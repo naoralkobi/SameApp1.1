@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OKwxSQmEIlUQRPYj7UWw0l+9rR15/DRQ20IjkYYoQgs=",
+  "Hash": "tJ954CUdEqJvwNYlZBAFfMsO5aVIJVKExGjJblfiHBI=",
   "Source": "SameApp",
   "BasePath": "_content/SameApp",
   "Mode": "Default",
@@ -185,6 +185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/sig.js"
+    },
+    {
+      "Identity": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/wwwroot/js/signalR.js",
+      "SourceId": "SameApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/wwwroot/",
+      "BasePath": "_content/SameApp",
+      "RelativePath": "js/signalR.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/signalR.js"
     },
     {
       "Identity": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
