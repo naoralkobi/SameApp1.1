@@ -11,10 +11,11 @@ In order to use our app, follow the next simple steps:
 3. register to the app.
 4. log in and start converstation.
 
-** NOTE: you can start conversation only with registered users that logged in at least one time after start the server running **
 
-In order to check our app, register from at least 2 users, and log in into each of them. (at the same running of the server)
-once you did it - you can add a new contact to your chat.
+**NOTE : you can speak only with users that logged in, in the same time with you. **
+
+In order to check our app, register from at least 2 users, and log in into each of them. (you can use 2 different browsers)
+once you did it - you can add a new contact to your chat and write them messages.
 
 in this version, you can only send text messeages.
 
