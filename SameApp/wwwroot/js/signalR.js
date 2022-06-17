@@ -87,7 +87,6 @@ $(function () {
         const $currentChat = $('#chat_name');
         const $currentContact = $('#combina');
 
-        alert($currentContact.text());
 
         if ($currentContact.text() === sender)
         {

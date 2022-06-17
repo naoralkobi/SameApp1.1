@@ -28,20 +28,26 @@ namespace SameApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string id1)
         {
-            if (@HttpContext.Session.GetString("username") == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
-            // current user name.
+            // if (@d("username") == null)
+            // {
+            //     return RedirectToAction("Login", "User");
+            // }
+            
+            // try to get from session.
             var currentUserName = HttpContext.Session.GetString("username");
+            
+            // get from url.
             if (currentUserName == null)
             {
-                return NotFound();
+                currentUserName = HttpContext.Request.Query["username"].ToString();
             }
+            
             // from the current user we create a contact.
+            var user = await _serviceUsers.GetUser(currentUserName);
+
             var messages =
                 _serviceMessages.GetAllMessages(currentUserName, id1);
-            return Ok(messages);
+            return Json(messages);
         }
 
         // GET: Contact/Details/5
@@ -67,12 +73,12 @@ namespace SameApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Id,Content,Created,Sent,UserId,ContactId")] Message message1)
+        public async Task<IActionResult> Create([FromBody] Message message1)
         {
-            if (@HttpContext.Session.GetString("username") == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
+            // if (@HttpContext.Session.GetString("username") == null)
+            // {
+            //     return RedirectToAction("Login", "User");
+            // }
             if (ModelState.IsValid)
             {
                 Message message = new Message
@@ -104,7 +110,7 @@ namespace SameApp.Controllers
                 senderContact.Messages.Add(message);
                 await _serviceMessages.AddMessage(message);
 
-                return Created(string.Format("/api/Messages/{0}", message.Id), message);
+                return Ok(message);
             }
 
             return BadRequest();

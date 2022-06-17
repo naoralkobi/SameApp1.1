@@ -22,8 +22,8 @@ public class Contact
     public string Last { get; set; }
     
     public string LastDate { get; set; }
-    
+    [JsonIgnore]
     public ICollection<Message> Messages { get; set; }
-    
+    [JsonIgnore]
     public User User { get; set; }
 }

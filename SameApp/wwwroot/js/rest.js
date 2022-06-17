@@ -16,7 +16,7 @@ async function post() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({"Id":'Aviv', "Name":'NewDisplayName', "Server":'localhost:7001', "Last":'', "LastDate":''})
+        body: JSON.stringify({"Id":'Aviv1',"UserNameOwner":"naor", "Name":'NewDisplayName', "Server":'localhost:7001', "Last":'', "LastDate":''})
     };
 
     const response = await fetch("https://localhost:7001/api/Contacts", request);

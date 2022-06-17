@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 using SameApp.Models;
 using SameApp.Services;
 
@@ -24,18 +25,30 @@ namespace SameApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            if (@HttpContext.Session.GetString("username") == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
+            
+            // if (@HttpContext.Session.GetString("username") == null)
+            // {
+            //     return RedirectToAction("Login", "User");
+            // } 
+            
+            // try to get from session.
             var currentUserName = HttpContext.Session.GetString("username");
+            
+            // get from url.
+            if (currentUserName == null)
+            {
+                currentUserName = HttpContext.Request.Query["username"].ToString();
+            }
+            
+            // handle with security issue
             if (currentUserName == null)
             {
                 return NotFound();
             }
-
+            
             var user = await _serviceUsers.GetUser(currentUserName);
             var contacts =  _serviceContacts.GetAllContacts(user);
+
             return Json(contacts);
         }
 
@@ -58,36 +71,46 @@ namespace SameApp.Controllers
                 return NotFound();
             }
 
+            contact.ToJson();
+
             return Json(contact);
         }
         
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Id,UserNameOwner,Name,Server,Last,LastDate")] Contact contact)
+        public async Task<IActionResult> Create([FromBody] Contact contact)
         {
-            if (@HttpContext.Session.GetString("username") == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
+            // if (@HttpContext.Session.GetString("username") == null)
+            // {
+            //     return RedirectToAction("Login", "User");
+            // }
             if (ModelState.IsValid)
             {
                 contact.Messages = new List<Message>();
                 
                 User user = await _serviceUsers.GetUser(contact.UserNameOwner);
                 
-                if (user.Contacts == null)
+                bool q = _serviceUsers.IsExist(contact.Id);
+
+                if (q)
                 {
-                    user.Contacts = new List<Contact>();
+                    if (user.Contacts == null)
+                    {
+                        user.Contacts = new List<Contact>();
+                    }
+        
+                    contact.User = user;
+                
+                    user.Contacts.Add(contact);
+
+                    _serviceContacts.AddContact(contact);
+
+                    return Ok();
                 }
-        
-                contact.User = user;
-                
-                user.Contacts.Add(contact);
-                
-                _serviceContacts.AddContact(contact);
-        
-                return Created(string.Format("/api/Contacts/{0}", contact.Id), contact);
+                else
+                {
+                    return NoContent();
+                }
             }
-        
             return BadRequest();
         }
         

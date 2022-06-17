@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SameApp.Models;
 
@@ -16,6 +17,6 @@ public class Message
 	public string UserId { get; set; }
     
 	public string ContactId { get; set; }
-	
+	[JsonIgnore]
 	public Contact Contact { get; set; }
 }

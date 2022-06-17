@@ -54,19 +54,17 @@ namespace SameApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserName,Password")] User user, string password_confirm)
+        public async Task<IActionResult> Create([Bind("UserName,Password")] User user, string passwordConfirm)
         {
             if (ModelState.IsValid)
             {
-
-                if(user.Password != password_confirm)
-                {
-                    return RedirectToAction("Chat", "Home");
-                }
-
                 var q = _serviceUsers.IsExist(user.UserName);
 
-                if (q)
+                if(user.Password != passwordConfirm)
+                {
+                    ViewData["Error"] = "Passwords are not equal, please try again.";
+                }
+                else if (q)
                 {
                     ViewData["Error"] = "user name already exist.";
                 }
@@ -190,6 +188,10 @@ namespace SameApp.Controllers
                 }
             }
             return View(user);
+        }
+        public IActionResult Ajax()
+        {
+            return View();
         }
     }
 }

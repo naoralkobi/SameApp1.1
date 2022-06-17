@@ -79,6 +79,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/Views/User/Ajax.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9BamF4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/Views/User/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
