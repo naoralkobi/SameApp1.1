@@ -570,3 +570,11 @@
 /Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/obj/Debug/net6.0/SameApp.pdb
 /Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/obj/Debug/net6.0/SameApp.genruntimeconfig.cache
 /Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/obj/Debug/net6.0/ref/SameApp.dll
+/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/bin/Debug/net6.0/private_key.json
+/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/bin/Debug/net6.0/FirebaseAdmin.dll
+/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/bin/Debug/net6.0/Google.Api.Gax.dll
+/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/bin/Debug/net6.0/Google.Api.Gax.Rest.dll
+/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/bin/Debug/net6.0/Google.Apis.dll
+/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/bin/Debug/net6.0/Google.Apis.Auth.PlatformServices.dll
+/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/bin/Debug/net6.0/Google.Apis.Auth.dll
+/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/bin/Debug/net6.0/Google.Apis.Core.dll

@@ -1,3 +1,8 @@
+using FirebaseAdmin;
+using FirebaseAdmin.Messaging;
+using Google.Apis.Auth.OAuth2;
+using NuGet.Common;
+
 namespace SameApp.Models;
 
 public class TokenData
@@ -33,8 +38,28 @@ public class TokenData
 
     public void PushNotification(string receiver, string sender, string content)
     {
+        FirebaseApp.Create(new AppOptions()
+        {
+            Credential = GoogleCredential.FromFile("private_key.json")
+        });
+        
         string token = _tokens[receiver];
 
+        var message = new FirebaseAdmin.Messaging.Message()
+        {
+            Data = new Dictionary<string, string>()
+            {
+                {"receiver", receiver},
+            },
+            Token = token,
+            Notification = new FirebaseAdmin.Messaging.Notification()
+            {
+                Title = sender,
+                Body = content
+            }
+        };
+
+        FirebaseMessaging.DefaultInstance.SendAsync(message);
     }
 
 }

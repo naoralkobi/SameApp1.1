@@ -1,9 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "NSlNIoF1Tm8rSa3Kl4LKOu3RPoztGcm8NRRykG4GrTFEBK0Hwh3p/Tzhh7BxlNzX5KSXAy9VDe2OP9bLDlZ3qA==",
+  "dgSpecHash": "7cA8nRihpK2q1osCgUqF2r2lHXLbGS5QTKbu3Nk7BTne68YeFDHz2TQIlrZkU0hlryuwFfAtT9uOKSin5jSQkA==",
   "success": true,
   "projectFilePath": "/Users/naoralkobi/RiderProjects/SameApp1.1/SameApp/SameApp.csproj",
   "expectedPackageFiles": [
+    "/Users/naoralkobi/.nuget/packages/firebaseadmin/2.3.0/firebaseadmin.2.3.0.nupkg.sha512",
+    "/Users/naoralkobi/.nuget/packages/google.api.gax/3.2.0/google.api.gax.3.2.0.nupkg.sha512",
+    "/Users/naoralkobi/.nuget/packages/google.api.gax.rest/3.2.0/google.api.gax.rest.3.2.0.nupkg.sha512",
+    "/Users/naoralkobi/.nuget/packages/google.apis/1.49.0/google.apis.1.49.0.nupkg.sha512",
+    "/Users/naoralkobi/.nuget/packages/google.apis.auth/1.49.0/google.apis.auth.1.49.0.nupkg.sha512",
+    "/Users/naoralkobi/.nuget/packages/google.apis.core/1.49.0/google.apis.core.1.49.0.nupkg.sha512",
     "/Users/naoralkobi/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/naoralkobi/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",
     "/Users/naoralkobi/.nuget/packages/messagepack.annotations/2.1.152/messagepack.annotations.2.1.152.nupkg.sha512",
