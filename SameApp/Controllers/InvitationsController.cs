@@ -57,7 +57,9 @@ namespace SameApp.Controllers
 
                 _serviceContacts.AddContact(contactRequest);
 
-                return Created(string.Format("/api/invitations/{0}", data.To), data);
+                return Ok();
+
+                //return Created(string.Format("/api/invitations/{0}", data.To), data);
             }
 
             return BadRequest();

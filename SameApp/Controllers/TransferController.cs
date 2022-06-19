@@ -64,7 +64,8 @@ namespace SameApp.Controllers
                 if (!_tokenData.GetTokens().ContainsKey(data.To))
                 {
                     // is not android
-                    return Created(string.Format("/api/transfer/{0}", data.To), data);
+                    return Ok();
+                    //return Created(string.Format("/api/transfer/{0}", data.To), data);
                 }
                 // is android
                 _tokenData.PushNotification(data.To, data.From, data.Content);
