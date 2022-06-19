@@ -66,7 +66,7 @@ namespace SameApp.Controllers
                     // is not android
                     return Created(string.Format("/api/transfer/{0}", data.To), data);
                 }
-                
+                // is android
                 _tokenData.PushNotification(data.To, data.From, data.Content);
                 return Ok();
 

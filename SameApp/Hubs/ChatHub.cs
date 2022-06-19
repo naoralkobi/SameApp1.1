@@ -19,16 +19,26 @@ public class ChatHub : Hub
     {
         var receiver = receiverContactId.Trim();
         var sender = currentUser.Trim();
-
-        var receiverConnectionString = Connections[receiver];
-        var senderConnectionString = Connections[sender];
-
+        
         Contact contact = await _serviceContacts.GetContact(receiver, sender);
+        
+        
+        TokenData tokenData = TokenData.GetInstance();
+        // check if receiver is not android user
+        if (tokenData.GetTokens().ContainsKey(receiver))
+        {
+            var senderConnectionString = Connections[sender];
+            await  Clients.Client(senderConnectionString).SendAsync("Update", message, sender, receiver, contact.Server);
+            
 
-        await  Clients.Client(receiverConnectionString).SendAsync("ChangeReceived", message, sender, receiver,contact.Server);
-        
-        await  Clients.Client(senderConnectionString).SendAsync("Update", message, sender, receiver, contact.Server);
-        
+        }
+        else
+        {
+            var receiverConnectionString = Connections[receiver];
+            // in the sender side.
+            // this handle only for view.
+            await  Clients.Client(receiverConnectionString).SendAsync("ChangeReceived", message, sender, receiver,contact.Server);
+        }
         //await Clients.All.SendAsync("ChangeReceived", message, currentUser);
     }
     

@@ -30,8 +30,7 @@ $(function () {
     });
 
     connection.on("Update", function (value, sender, receiver, server){
-
-
+        
         if (value.length > 0) {
             let tr = document.createElement("tr");
 

@@ -159,11 +159,12 @@ namespace SameApp.Controllers
         
         [HttpPost]
         [Route("token")]
-        public async Task<IActionResult> Token([FromBody] string userName, string token)
+        public async Task<IActionResult> Token([FromBody] string token)
         {
             if (ModelState.IsValid)
             {
                 _tokenData = TokenData.GetInstance();
+                var userName = HttpContext.Request.Query["username"].ToString();
                 if (!_tokenData.GetTokens().ContainsKey(userName))
                 {
                     _tokenData.AddKey(userName, token);

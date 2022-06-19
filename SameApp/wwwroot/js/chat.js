@@ -78,7 +78,6 @@ async function InviteManager(displayName, currentUser, newUserName, newServer) {
 
 
 async function postTransfer(server, message, sender, receiver) {
-    alert()
     const request = {
         method: 'POST',
         headers: {
