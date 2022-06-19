@@ -12,6 +12,7 @@ namespace SameApp.Controllers
         private readonly ContactService _serviceContacts;
         private readonly UserService _serviceUsers;
         private readonly MessageService _serviceMessages;
+        private TokenData _tokenData;
 
         public TransferController(ContactService service1, UserService service2, MessageService serviceMessages)
         {
@@ -28,7 +29,7 @@ namespace SameApp.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> RequestTransfer([Bind("From,To,Content")] TransferData data)
+        public async Task<IActionResult> RequestTransfer([FromBody] TransferData data)
         {
             if (ModelState.IsValid) {
                 
@@ -56,9 +57,19 @@ namespace SameApp.Controllers
                 }
                 receiverContact.Messages.Add(message);
                 await _serviceMessages.AddMessage(message);
+                
+                
+                _tokenData = TokenData.GetInstance();
+                
+                if (!_tokenData.GetTokens().ContainsKey(data.To))
+                {
+                    // is not android
+                    return Created(string.Format("/api/transfer/{0}", data.To), data);
+                }
+                
+                _tokenData.PushNotification(data.To, data.From, data.Content);
+                return Ok();
 
-
-                return Created(string.Format("/api/transfer/{0}", data.To), data);
             }
 
             return BadRequest();

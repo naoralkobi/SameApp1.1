@@ -26,7 +26,7 @@ namespace SameApp.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> RequestContact([Bind("From,To,Server")] InvitationsData data)
+        public async Task<IActionResult> RequestContact([FromBody] InvitationsData data)
         {
             if (ModelState.IsValid) {
                 

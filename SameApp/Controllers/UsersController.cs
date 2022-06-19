@@ -13,6 +13,7 @@ namespace SameApp.Controllers
         private readonly ContactService _serviceContacts;
         private readonly UserService _serviceUsers;
         private readonly MessageService _serviceMessages;
+        private TokenData _tokenData;
 
         public UsersController(ContactService service1, UserService service2, MessageService service3)
         {
@@ -153,6 +154,24 @@ namespace SameApp.Controllers
             user.ToJson();
 
             return Json(user);
+        }
+        
+        
+        [HttpPost]
+        [Route("token")]
+        public async Task<IActionResult> Token([FromBody] string userName, string token)
+        {
+            if (ModelState.IsValid)
+            {
+                _tokenData = TokenData.GetInstance();
+                if (!_tokenData.GetTokens().ContainsKey(userName))
+                {
+                    _tokenData.AddKey(userName, token);
+                    return Ok();
+                }
+                return NotFound();
+            }
+            return NoContent();
         }
 
 

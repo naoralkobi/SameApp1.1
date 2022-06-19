@@ -40,30 +40,27 @@ async function postContactToContactServer(displayName, currentUser, newUserName,
         body: JSON.stringify({ "from": fromUser, "to": toUser, "server": server })
     };
 
-    const response = await fetch("https://" + server +"/api/invitations", request);
+    const response = await fetch("http://" + server +"/api/invitations", request);
     return response.ok;
 
 }
 
 
 async function postContactToMyServer(displayName, currentUser, newUserName, newServer) {
-
     let username = newUserName;
     let server = newServer;
     let fromUser = currentUser
     fromUser = fromUser.trim();
-
-
-
-
+    
     const request = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+
         },
         body: JSON.stringify({ "Id": username, "UserNameOwner": fromUser, "Name": displayName, "Server": server, "Last": '', "LastDate": '' })
     };
-    const response = await fetch("https://" + server + "/api/Contacts", request);
+    const response = await fetch("http://" + server + "/api/Contacts", request);
     return response.ok;
 
 }
@@ -81,10 +78,7 @@ async function InviteManager(displayName, currentUser, newUserName, newServer) {
 
 
 async function postTransfer(server, message, sender, receiver) {
-
-
-
-
+    alert()
     const request = {
         method: 'POST',
         headers: {
@@ -93,7 +87,7 @@ async function postTransfer(server, message, sender, receiver) {
         body: JSON.stringify({ "from": sender, "to": receiver, "content": message })
     };
 
-    const response = await fetch("https://" + server +"/api/transfer", request);
+    const response = await fetch("http://" + server +"/api/transfer", request);
     return response.ok;
 
 }
@@ -109,7 +103,7 @@ async function postTransferToMyServer(server, message, sender, receiver) {
         body: JSON.stringify({"id":'20000', "content":message, "created":time, "sent":true, "UserId":sender, "ContactId":receiver})
     };
     //"api/Contacts/{id1}/[controller]"
-    let string = "https://" + server + "/api/Contacts/" + receiver + "/Messages";
+    let string = "http://" + server + "/api/Contacts/" + receiver + "/Messages";
     const response = await fetch(string, request);
     console.log(request);
     return response.ok;
