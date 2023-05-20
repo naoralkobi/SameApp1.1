@@ -1,31 +1,64 @@
-*** Welcome to SAME app. ***
+SAME App - User Guide
+Welcome to SAME App, a messaging application that allows you to have conversations with other registered users in real-time. Please read the following guide to get started with the app.
 
-First, we are sorry that we dont have commits from different users.
-we had some technic problems because Naor is using mac and Aviv is using windows and when we try to do commits and clone it was caused some problems.
-so we had 2 different repositories, and this is the final result.
+Prerequisites
+Before using SAME App, ensure that you have the following:
 
-In order to use our app, follow the next simple steps:
+A computer with either macOS or Windows operating system.
+Git installed on your machine.
+The latest version of your preferred web browser.
+Installation
+To install SAME App, follow these steps:
 
-1. clone our repository.
-2. run the app.
-3. register to the app.
-4. log in and start converstation.
+Clone the repository from GitHub using the following command:
 
+bash
+Copy code
+git clone <repository_url>
+Navigate to the cloned repository on your local machine.
 
-**NOTE : you can speak only with users that logged in, in the same time with you. **
+Usage
+To use SAME App, please follow these simple steps:
 
-In order to check our app, register from at least 2 users, and log in into each of them. (you can use 2 different browsers)
-once you did it - you can add a new contact to your chat and write them messages.
+Run the application by opening the index.html file in your web browser.
 
-in this version, you can only send text messeages.
+Register to create an account:
 
-When you add a new contact - you need to supply:
-1. his UserName that he registered with to the app DB.
-2. a nickname that you want.
-3. his server.
+Click on the "Register" button.
+Provide the required information in the registration form.
+Click on the "Submit" button to create your account.
+Log in to your account:
 
-** NOTE : if you want to send a message, first click on the chat, and only after you see the chat opened - send it. **
+Enter your credentials (username and password) in the login form.
+Click on the "Login" button to access your account.
+Start a conversation:
 
-notice that each login session stands for 6000 seconds, and then the session will end and you will need to login again.
+After logging in, you will see the list of online users.
+To initiate a conversation, select a user from the list.
+Click on the user's name to open the chat window.
+Type your message in the input box at the bottom of the chat window.
+Press Enter or click on the send button to send the message.
+Note: You can only communicate with users who are logged in at the same time as you.
 
-Thank you and enjoy :)
+Testing the App
+To fully test the capabilities of SAME App, we recommend following these steps:
+
+Register at least two users:
+
+Use two different browsers or browser profiles (e.g., Chrome and Firefox) for each user.
+Register each user separately using the registration form.
+Log in to each user account:
+
+Open the web browser for User 1 and enter the login credentials.
+Repeat the same process for User 2 on a different browser or browser profile.
+Add contacts and start conversations:
+
+User 1 should add User 2 as a contact by providing their registered username, a desired nickname, and the server.
+User 2 should also add User 1 as a contact using the same steps.
+Once contacts are added, both users can start sending text messages to each other.
+Note: Ensure that you click on the chat window before sending a message to avoid any issues.
+
+Session Timeout
+Please note that each login session is valid for 6000 seconds (approximately 100 minutes). After this duration, the session will expire, and you will need to log in again to continue using the app.
+
+Thank you for choosing SAME App. We hope you enjoy your messaging experience!
